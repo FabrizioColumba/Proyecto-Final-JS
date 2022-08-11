@@ -1,0 +1,32 @@
+[
+    {
+        "nombre": "Botines Puma Future",
+        "precio": "89US$",
+        "imagen": "./imagenes/pumafuture.jpg"
+    },
+    {
+        "nombre": "Botines Nike Mercurial",
+        "precio": "117US$",
+        "imagen": "./imagenes/botinesnike.png"
+    },
+    {
+        "nombre": "Raqueta Babolat",
+        "precio": "68US$",
+        "imagen": "./imagenes/raqueta.jpg"
+    },
+    {
+        "nombre": "Remera RF",
+        "precio": "25US$",
+        "imagen": "./imagenes/rf.jpg"
+    },
+    {
+        "nombre": "Zapatillas UA Rocket 2",
+        "precio": "87US$",
+        "imagen": "./imagenes/ua.jpg"
+    },
+    {
+        "nombre": "Camiseta SAS",
+        "precio": "67US$",
+        "imagen": "./imagenes/sas.jpg"
+    }
+]

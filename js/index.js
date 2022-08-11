@@ -204,7 +204,7 @@ function comprarButtonClicked() {
 
 const productcontainer = document.getElementById("productos")
 console.log(productcontainer);
-fetch('/products.json')
+fetch('./products.json')
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
