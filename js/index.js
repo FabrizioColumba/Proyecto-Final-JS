@@ -200,3 +200,28 @@ function comprarButtonClicked() {
   shoppingCartItemsContainer.innerHTML = "";
   updateShoppingCartTotal();
 }
+
+
+const productcontainer = document.getElementById("productos")
+console.log(productcontainer);
+fetch('/products.json')
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    data.forEach((producto)  => {
+      console.log(producto);
+      let div = document.createElement('div');
+      div.innerHtml = `
+      <div>
+      <h3 class="item-title">${producto.nombre}</h3>
+      <img class="item-image" src="${producto.imagen}">
+      <div class="item-details">
+          <h4 class="item-price">${producto.precio}</h4>
+          <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
+      </div>
+      </div>
+      `
+      console.log(div);
+      productcontainer.appendChild(div);
+    })
+  });
