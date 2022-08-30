@@ -1,71 +1,32 @@
-/*Dejo estos datos para la futura pestaña de crear cuenta*/
-// formulario.onsubmit = (event) => {
-//   event.preventDefault();
+const productcontainer = document.getElementById("productos")
+fetch('./products.json')
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((producto)  => {
+      let div = document.createElement('div');
+      div.setAttribute('class', 'col-12 col-md-6');
+      div.innerHTML = `
+      <div class="item shadow mb-4">
+        <h3 class="item-title">${producto.nombre}</h3>
+        <img class="item-image" src="${producto.imagen}">
+        <div class="item-details">
+            <h4 class="item-price">${producto.precio}</h4>
+            <button class="item-button btn btn-primary addToCart"  >AÑADIR AL CARRITO</button>
+        </div>
+      <div>
+      `
+      productcontainer.appendChild(div);
 
-//   let nuevoProducto = new Producto(
-//     inputNombre.value,
-//     inputCategoria.value,
-//     inputPrecioVenta.value,
-//     inputCantidad.value
-//   );
-//   if (
-//     inputNombre.value != "" &&
-//     inputPrecioVenta.value != "" &&
-//     inputCantidad.value != "" &&
-//     inputCategoria.value != ""
-//   ) {
-//     productos.push(nuevoProducto);
+    })
+  })
+  .then(() => {
+    const addToShoppingCartButtons = document.querySelectorAll(".addToCart");
+    addToShoppingCartButtons.forEach((addToCartButton) => {
+      addToCartButton.addEventListener("click", addToCartClicked);
+    });
+  });
 
-//     productos.reverse();
-//     limpiarTabla();
-//     agregarProductosTabla();
-//     errores.style.display = "none";
-//     formulario.reset();
-//   } else {
-//     errores.style.display = "block";
-//   }
-// };
 
-// function limpiarTabla() {
-//   while (tabla.rows.length > 1) {
-//     tabla.deleteRow(1);
-//   }
-// }
-
-// function agregarProductosTabla() {
-//   productos.forEach((producto) => {
-//     let tabla = document.querySelector(".tabla");
-//     let filaTabla = document.createElement("tr");
-
-//     filaTabla.innerHTML = `
-//         <td>${producto.nombre} </td>
-//         <td>${producto.categoria} </td>
-//         <td>${producto.precioVenta} </td>
-//         <td>${producto.cantidad} </td>
-//         `;
-
-//     tabla.append(filaTabla);
-//   });
-// }
-// let nombre = localStorage.getItem("nombre");
-// let categoria = localStorage.getItem("categoria");
-// let precioVenta = localStorage.getItem("precioVenta");
-// let cantidad = localStorage.getItem("cantidad");
-// document.getElementById("nombre").value = nombre;
-// document.getElementById("categoria").value = categoria;
-// document.getElementById("precioVenta").value = precioVenta;
-// document.getElementById("cantidad").value = cantidad;
-
-// function enviarFormulario() {
-//   let nombre = document.getElementById("nombre").value;
-//   let categoria = document.getElementById("categoria").value;
-//   let precioVenta = document.getElementById("precioVenta").value;
-//   let cantidad = document.getElementById("cantidad").value;
-//   localStorage.setItem("nombre", nombre);
-//   localStorage.setItem("categoria", categoria);
-//   localStorage.setItem("precioVenta", precioVenta);
-//   localStorage.setItem("cantidad", cantidad);
-// }
 function manejeElClick() {
   Swal.fire({
     title: "Estas seguro que quieres finalizar tu compra?",
@@ -83,10 +44,6 @@ function manejeElClick() {
     }
   });
 }
-const addToShoppingCartButtons = document.querySelectorAll(".addToCart");
-addToShoppingCartButtons.forEach((addToCartButton) => {
-  addToCartButton.addEventListener("click", addToCartClicked);
-});
 
 const comprarButton = document.querySelector(".comprarButton");
 comprarButton.addEventListener("click", comprarButtonClicked);
@@ -202,26 +159,4 @@ function comprarButtonClicked() {
 }
 
 
-const productcontainer = document.getElementById("productos")
-console.log(productcontainer);
-fetch('./products.json')
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-    data.forEach((producto)  => {
-      console.log(producto);
-      let div = document.createElement('div');
-      div.innerHtml = `
-      <div>
-      <h3 class="item-title">${producto.nombre}</h3>
-      <img class="item-image" src="${producto.imagen}">
-      <div class="item-details">
-          <h4 class="item-price">${producto.precio}</h4>
-          <button class="item-button btn btn-primary addToCart">AÑADIR AL CARRITO</button>
-      </div>
-      </div>
-      `
-      console.log(div);
-      productcontainer.appendChild(div);
-    })
-  });
+
